@@ -32,6 +32,7 @@ cd packer-ansible-terraform
 
 3. Create ResourceGroup named "myResourceGroup" to hold image  for packer  
 
+
 4. Run the scripts:
 -  Check yml file syntax:  make lint
 -  Create image: make image
