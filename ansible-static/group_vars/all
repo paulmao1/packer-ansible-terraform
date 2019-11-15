@@ -1,0 +1,8 @@
+ansible_python_interpreter: /usr/bin/python3
+
+username: paul
+# to generate password:
+#python3 -c 'import crypt; print(crypt.crypt("P@ssw0rd", "somesalt"))'
+password: somRYTDN25puo
+public_key: ~/.ssh/id_rsa.pub
+

@@ -1,0 +1,48 @@
+{
+  "variables": {
+   "location": "East US",
+   "size": "Standard_B1s"
+  },
+  "builders": [{
+   "type": "azure-arm",
+   "subscription_id": "your subscription_id",
+   "client_id": "your client_id",
+   "client_secret": "your client_secret",
+   "tenant_id": "your tenant_id",
+
+    "managed_image_resource_group_name": "myResourceGroup",
+    "managed_image_name": "PackerImage",
+    "os_type": "Linux",
+    "image_publisher": "Canonical",
+    "image_offer": "UbuntuServer",
+    "image_sku": "18.04-LTS",
+    "azure_tags": {
+        "dept": "Engineering",
+        "task": "Image deployment"
+    },
+    "location": "{{user `location`}}",
+   "vm_size": "{{user `size`}}"
+  }],
+  "provisioners": [{
+    "type": "shell",
+	"script": "scripts/install.sh"
+  },
+  {
+    "type": "ansible-local",
+    "playbook_file": "../ansible-static/provision.yml",
+    "role_paths": [
+         "../ansible-static/roles/common",
+         "../ansible-static/roles/user",
+         "../ansible-static/roles/ufw",
+         "../ansible-static/roles/nginx",
+         "../ansible-static/roles/ssh"
+         ],
+     "group_vars": "../ansible-static/group_vars",
+     "inventory_groups": "../ansible-static/hosts"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/clean.sh"
+    }           
+]
+}

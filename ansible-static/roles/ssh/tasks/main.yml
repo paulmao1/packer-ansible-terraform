@@ -1,0 +1,16 @@
+---
+- name: Enable root login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin yes"
+    state: present
+  notify: restart ssh
+
+- name: Enable password authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#?PasswordAuthentication"
+    line: "PasswordAuthentication yes"
+    state: present
+  notify: restart ssh

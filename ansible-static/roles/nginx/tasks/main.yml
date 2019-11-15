@@ -1,0 +1,32 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    force: yes
+    update_cache: yes
+
+- name: Set Nginx user
+  lineinfile:
+    dest: /etc/nginx/nginx.conf
+    regexp: "^user"
+    line: "user {{ username }};"
+    state: present
+
+- name: Check index file exist
+  stat: path=/var/www/html/.git
+  register: git_exists
+
+- name: Remove default Nginx index file
+  file:
+    path: /var/www/html
+    state: absent
+  when: not git_exists.stat.exists
+
+- name: Clone Nginx index file
+  git:
+    repo: https://github.com/paulmao1/Files.git
+    dest: /var/www/html
+    version: master
+    force: yes
+  when: not git_exists.stat.exists
