@@ -5,7 +5,7 @@ This repository uses packer to build an image and configures it with Ansible whi
 
 It will use the following software:
 
-* nginx For web server
+* Nginx For web server
 * Packer For building the image
 * Ansible For configuring the image
 * Terraform For provisioning the infrastructure on Azure
