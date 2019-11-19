@@ -1,6 +1,6 @@
 # Packer + Ansible + Terraform + Jenkins
 
-This repository uses packer to build an image and configures it with Ansible which host static website, then uses Terraform to spin up two instances on Azure with the image created by packer
+This repository uses packer to build an image and configures it with Ansible which host static website, then uses Terraform to spin up two instances on Azure with the image created by packer.
 
 
 It will use the following software:
@@ -9,6 +9,7 @@ It will use the following software:
 * Packer For building the image
 * Ansible For configuring the image
 * Terraform For provisioning the infrastructure on Azure
+* Jenkins for CI/CD
 
 
 Supported platform:
