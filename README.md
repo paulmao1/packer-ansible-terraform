@@ -17,7 +17,7 @@ Supported platform:
 * Azure Cloud
 
 
-## Usage
+## Usage for Linux
 
 1. Clone the repository and cd into it
 
@@ -27,8 +27,10 @@ cd packer-ansible-terraform
 ```
 
 2. Add environment variable for Azure account and export them:
--  subscription_id=<your ID>
--  Terraform: terraform.tfvars
+-  subscription_id=<your subscription_id>
+-  client_id=<your client_id >
+-  client_secret=<your client_secret>
+-  tenant_id=<your tenant_id>
 
 3. Create ResourceGroup named "myResourceGroup" to hold image  for packer  
 
@@ -37,3 +39,18 @@ cd packer-ansible-terraform
 -  Check yml file syntax:  make lint
 -  Create image: make image
 -  Create instance:  make instance
+
+## Usage for Jenkins
+1. Run Jenkins as docker like the following
+-  docker run  --rm  -u root -p 80:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock   -v "$HOME":/home  jenkinsci/blueocean 
+
+2. Access Jenkins like "http://<your IP>"
+
+3. Set Azure credential on Global using "Secret Text" kind
+
+4. Create new item and choose "Pipeline script from SCM"
+
+5. Input "https://github.com/paulmao1/packer-ansible-terraform.git" as Repository URL
+
+6. Finish the deployment via "Build Now"
+
