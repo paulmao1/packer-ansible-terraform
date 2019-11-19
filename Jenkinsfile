@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-        stage('Make image'){
+    stages('Make image'){
             steps{
                 dir('packer/'){
                 sh "packer build -var 'subscription_id=$Subscription_Id' \
@@ -27,6 +27,17 @@ pipeline {
                 }
             }
 
+        }
+    stages('NetworkInit'){
+            steps{
+                dir('terraform/'){
+                sh "terraform -var 'subscription_id=$Subscription_Id' \
+                    -var 'client_id=$Client_Id' \
+                    -var 'client_secret=$Client_Secret' \
+                    -var 'tenant_id=$Tenant_Id' \
+                    init"
+                }
+            }
         }
     }
 }
