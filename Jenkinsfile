@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    environment {
+        Subscription_Id = credentials('subscription_id')
+        Client_Dd = credentials('client_id')
+        Client_Secret = credentials('client_secret')
+        Tenant_Id = credentials('tenant_id')
+    }
     stages {
         stage('Software Preparing') {
             steps {
