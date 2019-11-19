@@ -2,10 +2,10 @@
   "variables": {
    "location": "East US",
    "size": "Standard_B1s",
-   "subscription_id": "",
-   "client_id": "",
-   "client_secret": "",
-   "tenant_id": ""
+   "subscription_id": "{{env `subscription_id`}}",
+   "client_id": "{{env `client_id`}}",
+   "client_secret": "{{env `client_secret`}}",
+   "tenant_id": "{{env `tenant_id`}}"
   },
   "builders": [{
    "type": "azure-arm",
