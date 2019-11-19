@@ -26,8 +26,8 @@ git clone https://github.com/paulmao1/packer-ansible-terraform.git
 cd packer-ansible-terraform
 ```
 
-2. Replace your account information in the following files:
--  Packer:  tempalate.json
+2. Add environment variable for Azure account and export them:
+-  subscription_id=<your ID>
 -  Terraform: terraform.tfvars
 
 3. Create ResourceGroup named "myResourceGroup" to hold image  for packer  
