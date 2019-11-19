@@ -1,14 +1,18 @@
 {
   "variables": {
    "location": "East US",
-   "size": "Standard_B1s"
+   "size": "Standard_B1s",
+   "subscription_id": "",
+   "client_id": "",
+   "client_secret": "",
+   "tenant_id": ""
   },
   "builders": [{
    "type": "azure-arm",
-   "subscription_id": "your subscription_id",
-   "client_id": "your client_id",
-   "client_secret": "your client_secret",
-   "tenant_id": "your tenant_id",
+   "subscription_id": "{{user `subscription_id`}}",
+   "client_id": "{{user `client_id`}}",
+   "client_secret": "{{user `client_secret`}}",
+   "tenant_id": "{{user `tenant_id`}}",
 
     "managed_image_resource_group_name": "myResourceGroup",
     "managed_image_name": "PackerImage",
