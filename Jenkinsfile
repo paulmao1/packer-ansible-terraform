@@ -6,8 +6,7 @@ pipeline {
         Client_Secret = credentials('client_secret')
         Tenant_Id = credentials('tenant_id')
     }
-    stages {
-        stage('Software Preparing') {
+    stages('Software Preparing') {
             steps {
                dir('jenkins/scripts/'){
                 sh 'chmod +x install.sh'
@@ -28,7 +27,8 @@ pipeline {
             }
 
         }
-    stages('NetworkInit'){
+    stages{
+        stage('NetworkInit'){
             steps{
                 dir('terraform/'){
                 sh "terraform -var 'subscription_id=$Subscription_Id' \
