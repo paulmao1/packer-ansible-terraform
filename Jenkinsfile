@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        Subscription_Id = credentials('ARM_SUBSCRIPTION_ID')
-        Client_Id = credentials('ARM_CLIENT_ID')
-        Client_Secret = credentials('ARM_CLIENT_SECRET')
-        Tenant_Id = credentials('ARM_TENANT_ID')
+        Subscription_Id = credentials('subscription_id')
+        Client_Id = credentials('client_id')
+        Client_Secret = credentials('client_secret')
+        Tenant_Id = credentials('tenant_id')
     }
     stages{
         stage('NetworkInit'){
