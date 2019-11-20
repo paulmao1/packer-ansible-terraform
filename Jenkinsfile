@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        Subscription_Id = credentials('subscription_id')
-        Client_Id = credentials('client_id')
-        Client_Secret = credentials('client_secret')
-        Tenant_Id = credentials('tenant_id')
+        Subscription_Id = credentials('ARM_SUBSCRIPTION_ID')
+        Client_Id = credentials('ARM_CLIENT_ID')
+        Client_Secret = credentials('ARM_CLIENT_SECRET')
+        Tenant_Id = credentials('ARM_TENANT_ID')
     }
     stages{
         stage('NetworkInit'){
@@ -17,7 +17,11 @@ pipeline {
         stage('NetworkPlan'){
             steps{
                 dir('terraform/'){
-                sh "terraform plan -out networking-tflan;echo \$? > status"
+                sh "terraform plan -var 'subscription_id=$Subscription_Id' \
+                    -var 'client_id=$Client_Id' \
+                    -var 'client_secret=$Client_Secret' \
+                    -var 'tenant_id=$Tenant_Id' \
+                    -out networking-tflan;echo \$? > status"
                 stash name: "networking-plan",includes:"networking-tflan"
                 }
             }
