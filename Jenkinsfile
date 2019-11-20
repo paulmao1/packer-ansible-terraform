@@ -25,7 +25,6 @@ pipeline {
                 echo 'Completed packer'
                 }
             }
-
         }
     stages{
         stage('NetworkInit'){
