@@ -28,11 +28,13 @@ cd packer-ansible-terraform
 ```
 
 2. Add environment variable for Azure account and export them:
+---
 a. For packer 
 -  export subscription_id=<your subscription_id>
 -  export client_id=<your client_id >
 -  export client_secret=<your client_secret>
 -  export tenant_id=<your tenant_id>
+---
 b. For terraform
 - export ARM_SUBSCRIPTION_ID="<your subscription_id>"
 - export ARM_CLIENT_ID="<your client_id >"
