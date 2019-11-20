@@ -10,11 +10,15 @@ pipeline {
         stage('NetworkInit'){
             steps{
                 dir('terraform/'){
-                sh "terraform -var 'subscription_id=$Subscription_Id' \
-                    -var 'client_id=$Client_Id' \
-                    -var 'client_secret=$Client_Secret' \
-                    -var 'tenant_id=$Tenant_Id' \
-                    init"
+                sh "terraform init"
+                }
+            }
+        }
+        stage('NetworkPlan'){
+            steps{
+                dir('terraform/'){
+                sh "terraform plan -out networking-tflan;echo \$? > status"
+                stash name: "networking-plan",includes:"networking-tflan"
                 }
             }
         }
