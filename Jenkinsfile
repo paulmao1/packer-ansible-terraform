@@ -7,6 +7,14 @@ pipeline {
         Tenant_Id = credentials('tenant_id')
     }
     stages{
+        stage('Software Preparing') {
+            steps {
+               dir('jenkins/scripts/'){
+                sh 'chmod +x install.sh'
+                sh './install.sh'
+                }
+            }
+        }
         stage('NetworkInit'){
             steps{
                 dir('terraform/'){
